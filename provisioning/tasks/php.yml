@@ -1,0 +1,19 @@
+---
+- name: add PHP repository
+  apt_repository: "repo='ppa:ondrej/php' state=present"
+
+- name: install PHP 7
+  apt:
+    name: php7.1
+    state: present
+
+- name: install PHP packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - php7.1-cli
+    - php7.1-curl
+    - php7.1-fpm
+    - php7.1-intl
+    - php7.1-mysql
